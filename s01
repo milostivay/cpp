@@ -1,0 +1,16 @@
+#include <iostream>
+
+int main() {
+    int a, b;
+    std::cin >> a;
+    std::cin >> b;
+    std::cout << "summa";
+    std::cout << a + b <<"\n";
+    std::cout << "raznosti";
+    std::cout << a -b <<"\n";
+    std::cout << "proizvedenie";
+    std::cout << a * b <<"\n";
+    std::cout << "Delinie";
+    std::cout << a / b <<"\n";
+    return 0;
+}
