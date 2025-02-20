@@ -1,0 +1,15 @@
+#include <iostream>
+
+int main() {
+    std::cout << "napishi dva chisla";
+    int a,b;
+    std::cin >> a;
+    std::cin >> b;
+
+    std::cout << "delenie celoy"<<"\t";
+    std::cout << a/b <<"\n";
+    std::cout << "ostatoc "<<"\t";//то что осталось после деления например 10/6 то до 10 нехватает 4 и он остатком выведет 4, если 10/3 то целое 3 и остаток 1
+    std::cout << a %b <<"\n";
+
+    return 0;
+}
