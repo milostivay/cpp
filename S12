@@ -1,0 +1,16 @@
+#include <iostream>
+
+int main() {
+    int s = 0;
+    int i = 1;
+
+    while (i <= 1000) {
+        if (i % 7 == 0) {
+            s += i;// сохранила число которое делиться на 7
+        }
+        i += 4; // шаг
+    }
+
+    std::cout << "Summa " << s << std::endl; // Вывод суммы
+    return 0;
+}
