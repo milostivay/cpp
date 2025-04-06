@@ -1,0 +1,47 @@
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
+
+int main() {
+    const int NUM_COUNT = 20; // Количество случайных чисел я захотела 20, 
+    //можно так же сделать чтобы пользователь вводил,но в задании главное прочитать
+    const std::string FILENAME = "output";
+    
+    
+    //создала файл чтобы не было ошибок, можно верхнюю часть убрать и он так же файл указанный прочтет 
+    // создание генератора для случайных чисел
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+
+    // Создание +запись
+    std::ofstream outputFile(FILENAME);
+    if (!outputFile) {
+        std::cerr << "Не удалось открыть файл для записи." << std::endl;
+        return 1;
+    }
+
+    // Записала рандомные числа 
+    for (int i = 0; i < NUM_COUNT; ++i) {
+        int randomNumber = std::rand() % 100; //от 1-99
+        outputFile << randomNumber << std::endl;
+    }
+    outputFile.close();
+
+    // Чтение чисел 
+    std::ifstream inputFile(FILENAME);
+    if (!inputFile) {
+        std::cerr << "Не открылся" << std::endl;
+        return 1;
+    }
+
+    int number;
+    int index = 1;
+
+    while (inputFile >> number) {
+        std::cout << index << ". " << number << std::endl;
+        index++;
+    }
+
+    inputFile.close();
+    return 0;
+}
