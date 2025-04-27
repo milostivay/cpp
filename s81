@@ -1,0 +1,48 @@
+#include <iostream>
+#include <string>
+
+class MS {
+private:
+    std::string value;
+
+public:
+    // Конструктор класса
+    MS(const std::string& str) : value(str) {}
+
+    // Перегрузка инкремента
+    MS& operator++() {
+        for (char& ch : value) {
+            ch++; // Смещение на 1
+        }
+        return *this;
+    }
+
+    // Перегрузка декремента
+    MS& operator--() {
+        for (char& ch : value) {
+            ch--; // Смещение на -1
+        }
+        return *this;
+    }
+
+    void print() const {
+        std::cout << value << std::endl;
+    }
+};
+
+int main() {
+    MS myStr("Hello");
+
+    std::cout << "Исходная строка: ";
+    myStr.print();
+
+    ++myStr; 
+    std::cout << "После инкремента: ";
+    myStr.print();
+
+    --myStr; 
+    std::cout << "После декремента: ";
+    myStr.print();
+
+    return 0;
+}
