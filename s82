@@ -1,0 +1,45 @@
+#include <iostream>
+
+class CrCard {
+private:
+    double balance;
+
+public:
+    // Конструктор класса
+    CrCard(double initialBalance) : balance(initialBalance) {}
+
+    // текущий баланса
+    double getBalance() const {
+        return balance;
+    }
+
+    // Перегрузка оператора 
+    CrCard& operator+(CrCard& other) {
+        this->balance += other.balance; // Добавление баланса другого карты
+        other.balance = 0; // Обнуление баланса другой карты
+        return *this; // Возвращение на текущий объект
+    }
+
+    // отображения баланса
+    void print() const {
+        std::cout << "Баланс: " << balance << std::endl;
+    }
+};
+
+//ну типо действие с картами вроде работает :)
+int main() {
+    CrCard card1(200.0); // карта 1 
+    CrCard card2(100.0);  // карта 2 
+
+    std::cout << "Перед:" << std::endl;
+    std::cout << "Карта 1: "; card1.print();
+    std::cout << "Карта 2: "; card2.print();
+    
+    card1 + card2; // Перенос баланс с 2 на 1
+
+    std::cout << "После:" << std::endl;
+    std::cout << "Карта 1: "; card1.print();
+    std::cout << "Карта 2: "; card2.print();
+
+    return 0;
+}
