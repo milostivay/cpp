@@ -1,0 +1,15 @@
+#include <iostream>
+#include <string>
+
+void reverse(const std::string& str) {
+    for (int i = str.length() - 1; i >= 0; i--) {
+        std::cout << str[i];
+    }
+    std::cout << std::endl; // для перехода на новую строку
+}
+
+int main() {
+    std::string input = "Testing";
+    reverse(input); // выводит: gnitseT
+    return 0;
+}
