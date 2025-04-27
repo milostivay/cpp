@@ -1,0 +1,60 @@
+#include <iostream>
+
+class CrCard {
+public:
+    int Number;     // номер карты 4 цифр
+    float Balance;  // баланс карты
+
+    // Конструктор класса
+    CrCard(int number, float balance) : Number(number), Balance(balance) {}
+
+    // внесения денег
+    void Put(float amount) {
+        Balance += amount;
+    }
+
+    // снятия денег
+    bool Take(float amount) {
+        if (amount <= Balance) {
+            Balance -= amount;
+            return true; 
+        }
+        std::cout << "Нехватает, иди работай" << std::endl;
+        return false; 
+    }
+};
+
+// перевод денег с одной карты на другую
+void Transfer(CrCard& C1, CrCard& C2, float amount) {
+    if (C1.Number == C2.Number) {
+        std::cout << "Это одна и та же карта" << std::endl;
+        return;
+    }
+
+    if (C1.Take(amount)) {
+        C2.Put(amount);
+        std::cout << "Перевод " << amount << "  с карты " << C1.Number 
+                  << " на карту " << C2.Number << " выполнен" << std::endl;
+    } else {
+        std::cout << "Не удалось выполнить перевод. денег наверное нету " << C1.Number << "." << std::endl;
+    }
+}
+
+//проверка
+int main() {
+    CrCard card1(1234, 100.0f); // Создание карты с балансом 100 Р
+    CrCard card2(5678, 50.0f);  // Создание карты с балансом 50 Р
+
+    // перевод 30  с card1 на card2
+    Transfer(card1, card2, 30.0f);
+    std::cout << "Баланс карты 1: " << card1.Balance << " \n"; 
+    std::cout << "Баланс карты 2: " << card2.Balance << " \n"; 
+
+    // перевод 80 Р с card1 на card2 (нету денег)
+    Transfer(card1, card2, 80.0f);
+
+    // переводс той же карты на туже
+    Transfer(card1, card1, 20.0f);
+
+    return 0;
+}
