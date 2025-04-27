@@ -1,0 +1,49 @@
+#include <iostream>
+
+class CrCard {
+public:
+    int Number;     // номер карты 4 цифры
+    float Balance;  // баланс
+
+    // Конструктор класса
+    CrCard(int number, float balance) : Number(number), Balance(balance) {}
+
+    // внесения денег
+    void Put(float amount) {
+        Balance += amount;
+    }
+
+    // снятия денег
+    bool Take(float amount) {
+        if (amount <= Balance) {
+            Balance -= amount;
+            return true; 
+        }
+        std::cout << "Недостаточно средств иди работай" << std::endl;
+        return false; 
+    }
+};
+
+int main() {
+    CrCard firstCC(1234, 50.0f); // Создание кредитной карты
+
+    // Указатель
+    CrCard* ptrCC = &firstCC;
+
+    std::cout << "Номер: " << ptrCC->Number << "\n";     // Вывод номера карты
+    std::cout << "Баланс: " << ptrCC->Balance << " \n"; // Вывод баланса карты
+
+    // Внесение денег на карту
+    ptrCC->Put(20.0f);
+    std::cout << "Баланс после внесения: " << ptrCC->Balance << " \n"; // Новый баланс
+
+    // Снятие денег с карты
+    if (ptrCC->Take(30.0f)) {
+        std::cout << "Баланс после снятия: " << ptrCC->Balance << " \n"; // Новый баланс
+    }
+
+    // Попытка снятия суммы, превышающей баланс
+    ptrCC->Take(50.0f);
+
+    return 0;
+}
