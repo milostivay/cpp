@@ -1,0 +1,27 @@
+#include <iostream>
+
+void print(int value) {
+    std::cout << value << std::endl;
+}
+
+void print(float value) {
+    std::cout << value << std::endl;
+}
+
+void print(char value) {
+    std::cout << value << std::endl;
+}
+
+void print(int value1, int value2) {
+    std::cout << value1 << ", " << value2 << std::endl;
+}
+
+int main() {
+    print(10);               // выводит: 10
+    print(3.14f);           // выводит: 3.14
+    print('A');             // выводит: A
+    print(5, 15);           // выводит: 5, 15
+
+    return 0;
+}
+// здесь 4 перегруженные функции принт, каждая принимает один или два аргумента различные типов
