@@ -1,0 +1,19 @@
+#include <iostream>
+#include <algorithm>
+
+void sort(int arr[10]) {
+    std::sort(arr, arr + 10, std::greater<int>());
+}
+
+int main() {
+    int a[10] = {1, 8, 3, 6, 5, 4, 9, 2, 8, 12};
+    
+    sort(a);
+    
+    for (int i = 0; i < 10; i++) {
+        std::cout << a[i] << " ";
+    }
+    
+    std::cout << "\n"; // выводит: 12 9 8 8 6 5 4 3 2 1
+    return 0;
+}
