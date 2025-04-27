@@ -1,0 +1,41 @@
+#include <iostream>
+
+class Bucket {
+public:
+    int vol; // объем
+    int us;   // сколько уже налито
+
+    // Конструктор класса
+    Bucket(int v, int u) : vol(v), us(u) {}
+
+    // опустошения ведра
+    void flush() {
+        us = 0;
+    }
+
+    // наполнения ведра
+    int fill(int v) {
+        int available_space = vol - us;
+        if (v <= available_space) {
+            us += v; // Заполнение 
+            return 0;  // Возврат 0, так как все влезло
+        } else {
+            us = vol; // Заполняем до максимума
+            return v - available_space; // Возврат разницы
+        }
+    }
+};
+
+int main() {
+    Bucket test_01(12, 3);
+    std::cout << "1) " << test_01.vol << ", " << test_01.us << "\n"; // 12, 3
+    
+    int rest = test_01.fill(14);
+    std::cout << "2) " << test_01.us << ", " << rest << "\n";  // 12, 5
+
+    test_01.flush();
+    rest = test_01.fill(8);
+    std::cout << "3) " << test_01.us << ", " << rest << "\n";   // 8, 0
+
+    return 0;
+}
