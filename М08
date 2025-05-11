@@ -1,0 +1,36 @@
+#include <iostream>
+#include <cmath>
+
+double get_angle(double a, double b, double c) {
+    // Проверка на корректность значений аргументов
+    if (a <= 0 || b <= 0 || c <= 0) {
+        std::cerr << "Длины сторон должны быть больше 0." << std::endl;
+        return -1; // Возвращаем -1 если ошибка ошибки и дальше по этому же принципу
+    }
+
+    // Проверяем существования треугольника
+    if (a >= b + c || b >= a + c || c >= a + b) {
+        std::cerr << "Стороны не могут образовать треугольник." << std::endl;
+        return -1; 
+    }
+
+    // Используем теорему косинусов для вычисления угла
+    double cos_angle = (b * b + c * c - a * a) / (2 * b * c);
+    
+    // Ограничиваем значение косинуса для избежания ошибок
+    if (cos_angle < -1 || cos_angle > 1) {
+        std::cerr << "Некорректные значения сторон." << std::endl;
+        return -1; 
+    }
+
+    // Вычисляем угол в радианах и преобразуем в градусы
+    double angle_rad = acos(cos_angle);
+    double angle_deg = angle_rad * (180.0 / M_PI);
+    
+    return angle_deg;
+}
+
+int main() {
+    std::cout << get_angle(5.0, 4.0, 3.0) << " градусов" << std::endl; // Ожидаемый результат: 90 градусов
+    return 0;
+}
