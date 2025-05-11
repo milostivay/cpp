@@ -1,0 +1,38 @@
+#include <iostream>
+#include <cmath>    // Для использования функций tan и M_PI (число π)
+
+// вычисления площади правильного N-угольника
+double calculatePolygonArea(double sideA, int numSides) {
+    //проверка на нормальную длину стороны
+    if (numSides < 3) {
+        std::cerr << "Ошибка! число сторон должно быть не меньше 3" << std::endl;
+        return 0.0;
+    }
+    //Проверила на положительность число
+    if (sideA <= 0) {
+        std::cerr << "Ошибка!длина стороны должна быть положительной." << std::endl;
+        return 0.0;
+    }
+
+    double area = (numSides * sideA * sideA) / (4 * tan(M_PI / numSides));
+    return area;
+}
+
+int main() {
+    double sideA;
+    int numSides;
+
+    std::cout << "Введите длину стороны A: ";
+    std::cin >> sideA;
+
+    std::cout << "Введите кол-во сторон N: ";
+    std::cin >> numSides;
+
+    double area = calculatePolygonArea(sideA, numSides);
+    if (area > 0) {
+        std::cout << "Площадь " << numSides << "-ка  со стороной " << sideA 
+                  << " = " << area << std::endl;
+    }
+
+    return 0;
+}
