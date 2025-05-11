@@ -1,0 +1,35 @@
+Задание: от 03.04 (было два задания) это 1
+напишите программу, которая сообщает сколько раз встречается каждая буква в строке, введенной пользователем
+
+#include <iostream>
+#include <map>
+#include <locale>
+#include <codecvt>
+
+int main() {
+    // Устанавливаем для поддержки многоязычных символов
+    std::locale::global(std::locale(""));
+
+    std::wstring input;
+    std::wcout << L"Введите строку: ";
+    std::getline(std::wcin, input);
+
+    // Создаем для хранения букв и их количества
+    std::map<wchar_t, int> letterCount;
+
+    // Подсчитываем буквы регистор не учитываю
+    for (wchar_t c : input) {
+        if (iswalpha(c)) { // Проверяем является ли символ буквой
+            wchar_t lowerC = towlower(c); // Приводим к нижнему регистру
+            letterCount[lowerC]++; // Счетчик для соответствующей буквы
+        }
+    }
+
+    // Вывод
+    std::wcout << L"\nКоличество буквы в строке:\n";
+    for (const auto& pair : letterCount) {
+        std::wcout << L"'" << pair.first << L"': " << pair.second << L"\n";
+    }
+
+    return 0;
+}
